@@ -3,6 +3,6 @@
 use App\Models\Quote;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'quote', [
+Route::get('/', fn () => view('quote', [
     'quote' => Quote::inRandomOrder()->first(),
-]);
+]));
