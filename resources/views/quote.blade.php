@@ -12,9 +12,9 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 </head>
 
-<body class="vh-full h-screen grid place-items-center">
+<body class="vh-full h-screen grid place-items-center px-16">
     <blockquote class="relative">
-        <svg class="size-16 absolute -start-8 -top-6 text-gray-100"
+        <svg class="size-16 absolute -start-8 -top-6 text-gray-200"
              width="16"
              height="16"
              viewBox="0 0 16 16"
