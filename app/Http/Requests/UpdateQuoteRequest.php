@@ -14,8 +14,8 @@ class UpdateQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quote' => ['required', 'string'],
-            'quotee' => ['required', 'string'],
+            'quote' => ['string'],
+            'quotee' => ['string'],
         ];
     }
 }
