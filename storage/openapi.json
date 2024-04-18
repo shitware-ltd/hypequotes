@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "https://quotes.shitware.ltd/"
+            "url": "https://quotes.shitware.ltd/api"
         }
     ],
     "security": [
@@ -66,7 +66,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Quote"
+                                                "$ref": "#/components/schemas/QuoteWithoutDataKey"
                                             }
                                         },
                                         "links": {
@@ -74,19 +74,25 @@
                                             "properties": {
                                                 "first": {
                                                     "type": "string",
-                                                    "example": "https://quotes.shitware.ltd/api/quptes?page=1"
+                                                    "example": "https://quotes.shitware.ltd/api/quotes?page=1"
                                                 },
                                                 "last": {
-                                                    "type": ["string", "null"],
+                                                    "type": [
+                                                        "string",
+                                                        "null"
+                                                    ],
                                                     "example": "null"
                                                 },
                                                 "prev": {
-                                                    "type": ["string", "null"],
+                                                    "type": [
+                                                        "string",
+                                                        "null"
+                                                    ],
                                                     "example": "null"
                                                 },
                                                 "next": {
                                                     "type": "string",
-                                                    "example": "https://quotes.shitware.ltd/api/quptes?page=2"
+                                                    "example": "https://quotes.shitware.ltd/api/quotes?page=2"
                                                 }
                                             }
                                         },
@@ -298,6 +304,36 @@
         },
         "schemas": {
             "Quote": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "example": "cd4e65ac-0456-498e-96a0-bf0f1b096393"
+                            },
+                            "quote": {
+                                "type": "string",
+                                "example": "I'll hack the redundant TCP sensor, that should sensor the IB sensor!"
+                            },
+                            "quotee": {
+                                "type": "string",
+                                "example": "Mrs. Amalia Parker"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "example": "1996-04-23T12:00:00.000000Z"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "example": "1996-04-23T12:00:00.000000Z"
+                            }
+                        }
+                    }
+                }
+            },
+            "QuoteWithoutDataKey": {
                 "type": "object",
                 "properties": {
                     "uuid": {
