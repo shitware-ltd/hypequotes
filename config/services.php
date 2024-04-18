@@ -31,4 +31,10 @@ return [
         ],
     ],
 
+    'bump' => [
+        'key' => env('BUMP_API_TOKEN'),
+        'documentation' => 'hype-quotes',
+        'branch' => 'main',
+    ],
+
 ];
