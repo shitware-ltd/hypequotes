@@ -6,7 +6,6 @@ use App\Models\Quote;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/quotes', QuoteController::class)
-    ->except(['update'])
     ->parameter('quotes', 'quote:uuid');
 
-Route::get('/random', fn () => new QuoteResource(Quote::query()->inRandomOrder()->first()));
+Route::get('/random', fn () => new QuoteResource(Quote::query()->inRandomOrder()->first()))->name('quotes.random');
