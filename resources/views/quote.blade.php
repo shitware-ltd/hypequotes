@@ -21,7 +21,7 @@
 
 <body class="bg-neutral-50 text-neutral-900 antialiased">
     <nav class="flex place-items-center justify-end space-x-2 p-2">
-        <a href="{{ route('api.docs') }}"
+        <a href="{{ route('scalar') }}"
            class="rounded-md px-2 py-2 hover:bg-neutral-100">API Documentation</a>
         <span>&bullet;</span>
         <a href="https://github.com/shitware-ltd/hypequotes"
