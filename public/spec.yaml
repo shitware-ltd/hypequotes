@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  title: Hype Quotes
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /api/random:
+    get:
+      summary: Random Quote
+      deprecated: false
+      description: Get a random quote.
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: &ref_0
+                    $ref: '#/components/schemas/Quote'
+                required:
+                  - data
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    data:
+                      uuid: 2c4fddf1-a7a4-4a00-9806-f5c434f7a423
+                      quote: Adficio decet aeneus sursum.
+                      quotee: Tina Runte I
+                      created_at: '2024-10-29T22:37:59.653Z'
+                      updated_at: '2024-10-29T22:37:59.654Z'
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+  /api/quotes/{uuid}:
+    get:
+      summary: Get Quote
+      deprecated: false
+      description: Get a quote by it's unique ID.
+      tags: []
+      parameters:
+        - name: uuid
+          in: path
+          description: ''
+          required: true
+          example: '{{$string.uuid}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: *ref_0
+                required:
+                  - data
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    data:
+                      uuid: 1e616c7b-a5b7-4e88-89c6-1146360957cd
+                      quote: >-
+                        Adaugeo canto ustilo amicitia capto thema tendo aequus
+                        censura.
+                      quotee: Dale Lueilwitz IV
+                      created_at: '2024-10-30T21:47:53.821Z'
+                      updated_at: '2024-10-30T21:47:53.821Z'
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+    put:
+      summary: Update Quote
+      deprecated: false
+      description: Update a quote by it's unique ID.
+      tags: []
+      parameters:
+        - name: uuid
+          in: path
+          description: ''
+          required: true
+          example: '{{$string.uuid}}'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quote:
+                  type: string
+                quotee:
+                  type: string
+              required:
+                - quote
+                - quotee
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: *ref_0
+                required:
+                  - data
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    data:
+                      uuid: 1c0d2a77-8463-4069-95bb-2fef43748812
+                      quote: Arbustum demoror contra tyrannus approbo alter.
+                      quotee: Miss Alicia Reilly
+                      created_at: '2024-10-30T21:49:54.567Z'
+                      updated_at: '2024-10-30T21:49:54.567Z'
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+    delete:
+      summary: Delete Quote
+      deprecated: false
+      description: Delete a quote by it's unique ID.
+      tags: []
+      parameters:
+        - name: uuid
+          in: path
+          description: ''
+          required: true
+          example: '{{$string.uuid}}'
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+  /api/quotes:
+    get:
+      summary: All Quotes
+      deprecated: false
+      description: Return all quotes in a paginated format.
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: *ref_0
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                      last:
+                        type: string
+                      prev:
+                        type: string
+                      next:
+                        type: string
+                    required:
+                      - first
+                      - last
+                      - prev
+                      - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      from:
+                        type: integer
+                      path:
+                        type: string
+                      per_page:
+                        type: integer
+                      to:
+                        type: integer
+                    required:
+                      - current_page
+                      - from
+                      - path
+                      - per_page
+                      - to
+                required:
+                  - data
+                  - links
+                  - meta
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    data:
+                      - uuid: cd4e65ac-0456-498e-96a0-bf0f1b096393
+                        quote: >-
+                          I'll hack the redundant TCP sensor, that should sensor
+                          the IB sensor!
+                        quotee: Mrs. Amalia Parker
+                        created_at: '1996-04-23T12:00:00.000000Z'
+                        updated_at: '1996-04-23T12:00:00.000000Z'
+                    links:
+                      first: https://quotes.shitware.ltd/api/quotes?page=1
+                      last: 'null'
+                      prev: 'null'
+                      next: https://quotes.shitware.ltd/api/quotes?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      path: https://quotes.shitware.ltd/api/quotes
+                      per_page: 15
+                      to: 15
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+    post:
+      summary: Create Quote
+      deprecated: false
+      description: Create a new quote.
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quote:
+                  type: string
+                  description: the quote
+                quotee:
+                  type: string
+                  description: the cite
+              required:
+                - quote
+                - quotee
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: *ref_0
+                required:
+                  - data
+          headers: {}
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                title: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+              examples:
+                '1':
+                  summary: Exception
+                  value:
+                    message: Unauthenticated.
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas:
+    Quote:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: unique identifier
+        quote:
+          type: string
+          description: the quote
+        quotee:
+          type: string
+          description: the cite
+        created_at:
+          type: string
+          description: creation timestamp
+        updated_at:
+          type: string
+          description: update timestamp
+      required:
+        - uuid
+        - quote
+        - quotee
+        - created_at
+        - updated_at
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []

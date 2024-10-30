@@ -49,7 +49,7 @@ return [
     |
     */
     // 'url' => 'https://cdn.jsdelivr.net/npm/@scalar/galaxy/dist/latest.json',
-    'url' => 'spec.json',
+    'url' => 'spec.yaml',
 
     /*
     |--------------------------------------------------------------------------
